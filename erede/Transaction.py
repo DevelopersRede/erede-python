@@ -1,14 +1,11 @@
 from .Additional import Additional
-from .Antifraud import Antifraud
 from .Authorization import Authorization
-from .Cart import Cart
-from .Environment import Environment
-from .RedeSerializable import RedeSerializable
-from .ThreeDSecure import ThreeDSecure
-from .Url import Url
-from .Refund import Refund
 from .Capture import Capture
 from .Iata import Iata
+from .RedeSerializable import RedeSerializable
+from .Refund import Refund
+from .ThreeDSecure import ThreeDSecure
+from .Url import Url
 
 
 class Transaction(RedeSerializable):
@@ -29,11 +26,9 @@ class Transaction(RedeSerializable):
         """
         
         """
-        self.amount = round(amount*100)
+        self.amount = round(amount * 100)
         self.reference = reference
         self.additional = None
-        self.antifraud = None
-        self.antifraudRequired = None
         self.authorization = None
         self.authorizationCode = None
         self.cancelId = None
@@ -78,18 +73,6 @@ class Transaction(RedeSerializable):
         self.urls.append(Url(url, kind))
 
         return self
-
-    def set_antifraud(self, environment=None):
-        if environment is None:
-            environment = Environment.production()
-
-        cart = Cart()
-        cart.environment = environment
-
-        self.antifraudRequired = True
-        self.cart = cart
-
-        return cart
 
     def credit_card(self, card_number, security_code, expiration_month, expitarion_year, card_holder_name):
         return self.card(card_number, security_code, expiration_month, expitarion_year, card_holder_name,
@@ -187,11 +170,6 @@ class Transaction(RedeSerializable):
 
             if k == "threeDSecure":
                 instance.threeDSecure = ThreeDSecure.unserialize(v)
-
-                continue
-
-            if k == "antifraud":
-                instance.antifraud = Antifraud.unserialize(v)
 
                 continue
 

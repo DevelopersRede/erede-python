@@ -14,4 +14,3 @@ class CreateTransactionService(TransactionService):
 
     def execute(self):
         return self.send_request(TransactionService.POST, self.transaction.to_json())
-

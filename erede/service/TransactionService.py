@@ -1,8 +1,8 @@
 import requests
-import erede
 
-from erede.Transaction import Transaction
+import erede
 from erede.RedeError import RedeError
+from erede.Transaction import Transaction
 
 
 class TransactionService:
@@ -26,7 +26,8 @@ class TransactionService:
     def send_request(self, method, body=None):
         headers = {'User-Agent': "{} Store/{}".format(erede.eRede.USER_AGENT, self.store.filliation),
                    "Accept": "application/json",
-                   "Content-Type": "application/json"}
+                   "Content-Type": "application/json",
+                   "Transaction-Response": "brand-return-opened"}
 
         response = getattr(requests, method)(self.get_uri(),
                                              auth=(self.store.filliation, self.store.token),

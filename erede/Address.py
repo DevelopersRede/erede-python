@@ -18,4 +18,3 @@ class Address(RedeSerializable):
         self.state = None
         self.type = None
         self.zipCode = None
-

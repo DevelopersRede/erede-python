@@ -1,19 +1,18 @@
 from .RedeSerializable import RedeSerializable
 
 
-class Antifraud(RedeSerializable):
+class Brand(RedeSerializable):
     def __init__(self):
-        self.recommendation = None
-        self.riskLevel = None
-        self.score = None
-        self.success = False
+        self.name = None
+        self.responseCode = None
+        self.responseMessage = None
 
     @staticmethod
     def unserialize(dict=None):
         if dict is None:
             dict = {}
 
-        instance = Antifraud()
+        instance = Brand()
 
         for k, v in dict.items():
             setattr(instance, k, v)
