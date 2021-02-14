@@ -22,4 +22,4 @@ class GetTransactionService(TransactionService):
         return "{}/{}".format(super().get_uri(), self.tid)
 
     def execute(self):
-        self.send_request(TransactionService.GET)
+        return self.send_request(TransactionService.GET)
