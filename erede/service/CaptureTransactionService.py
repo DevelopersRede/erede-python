@@ -16,4 +16,4 @@ class CaptureTransactionService(TransactionService):
         return "{}/{}".format(super().get_uri(), self.transaction.tid)
 
     def execute(self):
-        self.send_request(TransactionService.PUT, self.transaction.to_json())
+        return self.send_request(TransactionService.PUT, self.transaction.to_json())

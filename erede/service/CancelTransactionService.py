@@ -16,4 +16,4 @@ class CancelTransactionService(TransactionService):
         return "{}/{}/refunds".format(super().get_uri(), self.transaction.tid)
 
     def execute(self):
-        self.send_request(TransactionService.POST, self.transaction.to_json())
+        return self.send_request(TransactionService.POST, self.transaction.to_json())
